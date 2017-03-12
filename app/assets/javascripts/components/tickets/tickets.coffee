@@ -25,19 +25,24 @@
     @setState tickets: tickets
   render: ->
     React.DOM.div
-      className: 'tickets'
-      React.createElement SearchBlock, all_states: @state.all_states, handleReplaceTicket: @replaceTicket
-      React.DOM.br null
-      React.DOM.table
-        className: 'table table-bordered'
-        React.DOM.thead null,
-          React.DOM.tr null,
-            React.DOM.th null, 'Name'
-            React.DOM.th null, 'Description'
-            React.DOM.th null, 'Customer Name'
-            React.DOM.th null, 'Agent Name'
-            React.DOM.th null, 'Status'
-            React.DOM.th null, 'Actions'
-        React.DOM.tbody null,
-          for ticket in @state.tickets
-            React.createElement Ticket, key: ticket.id, ticket: ticket, allowed_states: @state.allowed_states, handleUpdateTicket: @updateTicket, handleEditTicket: @updateTicket
+      className: 'tickets col-xs-12'
+      React.DOM.div
+        className: 'tickets row'
+        React.createElement SearchBlock, all_states: @state.all_states, handleReplaceTicket: @replaceTicket
+        React.createElement DownloadTickets
+      React.DOM.div
+        className: 'tickets row'
+        React.DOM.br null
+        React.DOM.table
+          className: 'table table-bordered'
+          React.DOM.thead null,
+            React.DOM.tr null,
+              React.DOM.th null, 'Name'
+              React.DOM.th null, 'Description'
+              React.DOM.th null, 'Customer Name'
+              React.DOM.th null, 'Agent Name'
+              React.DOM.th null, 'Status'
+              React.DOM.th null, 'Actions'
+          React.DOM.tbody null,
+            for ticket in @state.tickets
+              React.createElement Ticket, key: ticket.id, ticket: ticket, allowed_states: @state.allowed_states, handleUpdateTicket: @updateTicket, handleEditTicket: @updateTicket

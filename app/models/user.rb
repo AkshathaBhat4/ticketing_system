@@ -52,7 +52,7 @@ class User < ApplicationRecord
     self.send("#{user_type_name}_state")
   end
 
-  if ActiveRecord::Base.connection.table_exists? 'user_types'
+  if ActiveRecord::Base.connection.data_source_exists? 'user_types'
     UserType.all.each do |ut|
       define_method "is_#{ut.name}?" do
         user_type_name == ut.name

@@ -62,6 +62,10 @@ gem 'slim'
 gem 'bootstrap-sass'
 gem 'react-rails'
 
+# PDF Generator
+gem 'prawn'
+gem 'prawn-table'
+
 # Authentication
 gem 'devise'
 

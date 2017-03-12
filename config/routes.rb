@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'home#index'
   resource :tickets do
     put 'change_state'
+    post 'generate_report'
   end
   resource :users do
     get 'get_user_tabs'

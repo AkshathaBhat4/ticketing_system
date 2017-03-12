@@ -37,6 +37,12 @@ class TicketsController < ApplicationController
     end
   end
 
+  def generate_report
+    file_name = "tmp/ticket_report_#{Date.today.strftime("%d_%m_%Y")}.pdf"
+    Ticket.generate_monthly_report(file_name)
+    send_file file_name#, :x_sendfile => true, type: "application/pdf", disposition: "attachment"
+  end
+
   private
 
     def ticket_params
