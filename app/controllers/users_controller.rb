@@ -37,6 +37,12 @@ class UsersController < ApplicationController
     render json: current_user.allowed_ticket_state
   end
 
+  def all_states
+    states = State.all.pluck(:name)
+    states.insert(0, 'all')
+    render json: states
+  end
+
   private
 
     def user_params

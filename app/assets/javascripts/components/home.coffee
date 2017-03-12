@@ -28,27 +28,24 @@
     @setState selected_tab: name
   userTabs: ->
     tabs = $.map @state.user_tabs, (value, name) =>
+      selected = if @state.selected_tab == name
+        'selected'
+      else
+        ''
       React.DOM.a
-        className: 'btn btn-default'
+        className: "btn btn-default #{selected}"
         key: name
         name: name
         onClick: @tabClicked
         "#{value}"
     tabs
-  adminBlock: ->
-    React.DOM.div
-      className: 'row'
-      if @state.selected_tab == 'tickets'
-        React.createElement Tickets
-      else
-        React.createElement Users, user_types: @props.user_types
   userBlock: ->
     React.DOM.div
       className: 'row'
       if @state.selected_tab == 'tickets'
         React.createElement Tickets
       else if @state.selected_tab == 'users'
-        React.createElement Users, user_types: @props.user_typess
+        React.createElement Users, user_types: @props.user_types
   render: ->
     React.DOM.div
       className: 'panel panel-success'
@@ -65,7 +62,7 @@
           if @state.user_signed_in
             React.DOM.div null,
               React.DOM.div
-                className: 'row'
+                className: 'row tabs'
                 @userTabs()
               React.DOM.div
                 className: 'row'

@@ -9,6 +9,7 @@ class TicketsController < ApplicationController
       else
         @tickets = Ticket.all
       end
+      @tickets = @tickets.state_tickets(params['state']) if params['state'].present? && params['state'] != 'all'
       render json: @tickets.as_json
     end
   end
