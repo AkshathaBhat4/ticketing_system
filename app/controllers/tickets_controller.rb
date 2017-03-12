@@ -26,4 +26,20 @@ class TicketsController < ApplicationController
       render json: {"#{name}": 'state not allowed'}, status: :unprocessable_entity
     end
   end
+
+  def create
+    @ticket = current_user.customer_tickets.new(ticket_params)
+
+    if @ticket.save
+      render json: @ticket.as_json
+    else
+      render json: @ticket.errors.to_json, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+    def ticket_params
+      params.require(:ticket).permit(:name, :description)
+    end
 end

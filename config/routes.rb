@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resource :users do
     get 'get_user_tabs'
     get 'allowed_states'
+    get 'all_states'
   end
   # devise_for :users
   devise_for :users, only: :sessions, controllers: {

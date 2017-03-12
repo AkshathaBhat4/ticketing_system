@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :user_type
+  has_many :customer_tickets, foreign_key: 'customer_id', class_name: Ticket
+  has_many :agent_tickets, foreign_key: 'agent_id', class_name: Ticket
   scope :non_admin_users, -> { includes(:user_type).where.not(user_types: {name: 'admin'})}
 
   delegate :name, :name, to: :user_type, prefix: true

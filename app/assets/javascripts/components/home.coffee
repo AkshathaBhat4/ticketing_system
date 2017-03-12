@@ -26,6 +26,8 @@
   tabClicked: (e) ->
     name = e.target.name
     @setState selected_tab: name
+  newTicket: ->
+      @setState selected_tab: 'tickets'
   userTabs: ->
     tabs = $.map @state.user_tabs, (value, name) =>
       selected = if @state.selected_tab == name
@@ -46,6 +48,9 @@
         React.createElement Tickets
       else if @state.selected_tab == 'users'
         React.createElement Users, user_types: @props.user_types
+      else if @state.selected_tab == 'new_ticket'
+        React.createElement TicketForm, handleNewTicket: @newTicket
+
   render: ->
     React.DOM.div
       className: 'panel panel-success'

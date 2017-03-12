@@ -10,13 +10,15 @@ class Ticket < ApplicationRecord
   delegate :name, :name, to: :agent, prefix: true
   delegate :name, :name, to: :state, prefix: true
 
+  after_create :new_state!
+
   def as_json
     options={
       only: [:id, :name, :description],
       include: {
         customer: {only: [:name]},
         state: {only: [:name]},
-        agent: {only: [:name]},
+        agent: {only: [:name]}
       }
     }
     super(options)
