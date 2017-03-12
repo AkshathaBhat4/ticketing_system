@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   # get 'home/index'
-  root 'tickets#index'
-  resource :tickets
-  resource :users
+  root 'home#index'
+  resource :tickets do
+    put 'change_state'
+  end
+  resource :users do
+    get 'get_user_tabs'
+    get 'allowed_states'
+  end
   # devise_for :users
   devise_for :users, only: :sessions, controllers: {
         sessions: 'users/sessions'

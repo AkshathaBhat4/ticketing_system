@@ -10,6 +10,6 @@
     React.DOM.div
       className: 'sign_out pull-right'
       React.DOM.a
-        className: 'btn btn-primary'
+        className: 'btn btn-success'
         onClick: @handleSignOut
         'Sign Out'

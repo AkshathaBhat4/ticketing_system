@@ -29,6 +29,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def get_user_tabs
+    render json: current_user.user_tabs
+  end
+
+  def allowed_states
+    render json: current_user.allowed_ticket_state
+  end
+
   private
 
     def user_params

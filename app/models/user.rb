@@ -13,7 +13,56 @@ class User < ApplicationRecord
   def  update_user_type
     if user_type.blank?
       customer = UserType.find_by(name: 'customer')
-      self.update_column(:user_type_id, customer.id) 
+      self.update_column(:user_type_id, customer.id)
+    end
+  end
+
+  def admin_tabs
+    {
+      'users': 'Manage Users',
+      'tickets': 'Manage Tickets'
+    }
+  end
+
+  def agent_tabs
+    {
+      'tickets': 'Manage Tickets'
+    }
+  end
+
+  def customer_tabs
+    {
+      'tickets': 'Manage Tickets',
+      'new_ticket': 'Raise Ticket'
+    }
+  end
+
+  def user_tabs
+    self.send("#{user_type_name}_tabs")
+  end
+
+  def admin_state
+    states = {}
+    State.admin_state
+  end
+
+  def allowed_ticket_state
+    self.send("#{user_type_name}_state")
+  end
+
+  if ActiveRecord::Base.connection.table_exists? 'user_types'
+    UserType.all.each do |ut|
+      define_method "is_#{ut.name}?" do
+        user_type_name == ut.name
+      end
+
+      define_method "#{ut.name}_state" do
+        states = {}
+        State.send("#{ut.name}_state").each do |state|
+          states[state.name] = state.name.capitalize
+        end
+        states
+      end
     end
   end
 end
