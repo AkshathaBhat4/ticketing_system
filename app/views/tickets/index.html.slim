@@ -1,6 +1,1 @@
-.panel.panel-success
-  .panel-heading.text-center
-    h2
-      | Welcome to Ticketing System
-  .panel-body[style="padding-top:0px"]
-    = react_component 'Welcome', { user_signed_in: user_signed_in?, tickets: [] }
+= react_component 'Welcome', { user_signed_in: user_signed_in?, tickets: [] , user_type: current_user.try(:user_type_name).to_s, user_types: @user_types.to_h}

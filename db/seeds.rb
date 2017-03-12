@@ -15,9 +15,13 @@ user_types.each do |user_type|
   UserType.where(user_type).first_or_create
 end
 
-admin_user = UserType.find_by(name: 'admin')
+admin = UserType.find_by(name: 'admin')
+agent = UserType.find_by(name: 'agent')
+customer = UserType.find_by(name: 'customer')
 users = [
-  {email: 'admin@gmail.com', name: 'Admin', password: 'admin@123456', password_confirmation: 'admin@123456', user_type_id: admin_user.id}
+  {email: 'admin@gmail.com', name: 'Admin', password: 'admin@123456', password_confirmation: 'admin@123456', user_type_id: admin.id},
+  {email: 'agent@gmail.com', name: 'Agent', password: 'agent@123456', password_confirmation: 'agent@123456', user_type_id: agent.id},
+  {email: 'customer@gmail.com', name: 'Customer', password: 'customer@123456', password_confirmation: 'customer@123456', user_type_id: customer.id}
 ]
 User.destroy_all
 User.create!(users)

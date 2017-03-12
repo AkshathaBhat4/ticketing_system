@@ -3,7 +3,9 @@
     $.ajax
       url: '/users/sign_out.json'
       method: 'DELETE'
-    @props.handleUserSignOut()
+      dataType: 'JSON'
+      success: () =>
+        @props.handleUserSignOut()
   render: ->
     React.DOM.div
       className: 'sign_out pull-right'
