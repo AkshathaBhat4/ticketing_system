@@ -38,17 +38,17 @@ RSpec.describe TicketsController, type: :controller do
     @ticket5 = @customer_user.customer_tickets.create(name: 'Customer Ticket 5', description: 'Customer Ticket 5 description')
   end
 
-  def response_hash_structure
-    {
-      "id" => an_instance_of(Fixnum),
-      "name" => be_an_instance_of(String),
-      "description" => be_an_instance_of(String),
-      "customer" => {"name" => be_an_instance_of(String)},
-      "state" => {"name" => be_an_instance_of(String)}
-    }
-  end
-
   describe "Get Tickets" do
+    def response_hash_structure
+      {
+        "id" => an_instance_of(Fixnum),
+        "name" => be_an_instance_of(String),
+        "description" => be_an_instance_of(String),
+        "customer" => {"name" => be_an_instance_of(String)},
+        "state" => {"name" => be_an_instance_of(String)}
+      }
+    end
+
     it "returns http success" do
       sign_in @admin_user
       get :show
@@ -64,7 +64,7 @@ RSpec.describe TicketsController, type: :controller do
     it "loads all of the tickets", default_tickets: true do
       # Admin Login
       sign_in @admin_user
-      response = get :show
+      get :show
       hash_body = nil
       expect { hash_body = JSON.parse(response.body) }.not_to raise_exception
       expect(hash_body).to match(a_collection_including(response_hash_structure))
@@ -72,7 +72,7 @@ RSpec.describe TicketsController, type: :controller do
 
       # Customer Login
       sign_in @customer_user
-      response = get :show
+      get :show
       hash_body = nil
       expect { hash_body = JSON.parse(response.body) }.not_to raise_exception
       expect(hash_body).to match(a_collection_including(response_hash_structure))
@@ -80,7 +80,7 @@ RSpec.describe TicketsController, type: :controller do
 
     it "loads individual ticket", default_tickets: true do
       sign_in @admin_user
-      response = get :show, params: { id: @ticket1.id }
+      get :show, params: { id: @ticket1.id }
       hash_body = nil
       expect { hash_body = JSON.parse(response.body) }.not_to raise_exception
 
@@ -91,7 +91,7 @@ RSpec.describe TicketsController, type: :controller do
       sign_in @admin_user
       @ticket2.close_state!
       @ticket3.close_state!
-      response = get :show, params: { state: 'close' }
+      get :show, params: { state: 'close' }
       hash_body = nil
       expect { hash_body = JSON.parse(response.body) }.not_to raise_exception
 
@@ -128,7 +128,7 @@ RSpec.describe TicketsController, type: :controller do
 
     it "returns created ticket", customer_user: true do
       sign_in @customer_user
-      response = post :create, params: valid_user_params
+      post :create, params: valid_user_params
       hash_body = nil
       expect { hash_body = JSON.parse(response.body) }.not_to raise_exception
       expected_output = []
@@ -168,7 +168,7 @@ RSpec.describe TicketsController, type: :controller do
       sign_in @customer_user
       state = 'delete'
 
-      response = put :change_state, params: valid_params_for(@ticket1, state)
+      put :change_state, params: valid_params_for(@ticket1, state)
       hash_body = nil
       expect { hash_body = JSON.parse(response.body) }.not_to raise_exception
 
@@ -184,7 +184,7 @@ RSpec.describe TicketsController, type: :controller do
     it "invalid change state", default_tickets: true do
       sign_in @customer_user
       state = 'inprogress'
-      response = put :change_state, params: valid_params_for(@ticket1, state)
+      put :change_state, params: valid_params_for(@ticket1, state)
       hash_body = nil
       expect { hash_body = JSON.parse(response.body) }.not_to raise_exception
 

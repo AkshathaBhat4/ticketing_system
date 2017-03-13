@@ -59,7 +59,7 @@
       React.DOM.td null, @props.user.name
       React.DOM.td null, @props.user.email
       React.DOM.td null, @props.user.password
-      React.DOM.td null, @props.user_types[@props.user.user_type_id]
+      React.DOM.td null, @props.user.user_type['name']
       React.DOM.td null,
         React.DOM.a
           className: 'btn btn-default'

@@ -13,6 +13,16 @@ class User < ApplicationRecord
 
   after_save :update_user_type
 
+  def as_json
+    options={
+      only: [:id, :email, :name, :user_type_id],
+      include: {
+        user_type: {only: [:name]}
+      }
+    }
+    super(options)
+  end
+
   def  update_user_type
     if user_type.blank?
       customer = UserType.find_by(name: 'customer')
