@@ -28,8 +28,9 @@
       className: 'tickets col-xs-12'
       React.DOM.div
         className: 'tickets row'
+        if (@props.user_type == 'admin' or @props.user_type == 'agent')
+          React.createElement DownloadTickets
         React.createElement SearchBlock, all_states: @state.all_states, handleReplaceTicket: @replaceTicket
-        React.createElement DownloadTickets
       React.DOM.div
         className: 'tickets row'
         React.DOM.br null

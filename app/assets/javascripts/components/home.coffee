@@ -45,7 +45,7 @@
     React.DOM.div
       className: 'row'
       if @state.selected_tab == 'tickets'
-        React.createElement Tickets
+        React.createElement Tickets, user_type: @state.user_type
       else if @state.selected_tab == 'users'
         React.createElement Users, user_types: @props.user_types
       else if @state.selected_tab == 'new_ticket'

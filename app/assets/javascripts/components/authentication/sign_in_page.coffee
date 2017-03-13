@@ -2,21 +2,39 @@
   getInitialState: ->
     email: ''
     password: ''
+    error_message: {}
   handleSubmit: (e) ->
     e.preventDefault()
-    $.post '/users/sign_in.json', { user: @state }, (data) =>
-      @props.handleUserSignIn data
-    , 'JSON'
+    $.ajax
+      method: 'POST'
+      url: "/users/sign_in.json"
+      dataType: 'JSON'
+      data: {user: @state}
+      success: (data) =>
+        @props.handleUserSignIn data
+      error: (data) =>
+        @setState error_message: data['responseJSON']
   handleChange: (e) ->
     name = e.target.name
     @setState "#{ name }": e.target.value
   valid: ->
     @state.email && @state.password
+  errorMessage: ->
+    option = ''
+    $.map @state.error_message, (messages, k) ->
+      value = ""
+      for message in messages
+        value = "#{value} #{message}"
+      option = "#{option} #{k}: #{value};"
+    option
   render: ->
     React.DOM.div
       className: 'sign_in col-md-6 col-md-offset-3'
       React.DOM.form
         onSubmit: @handleSubmit
+        React.DOM.div
+          className: 'form-group'
+          React.DOM.label null, @errorMessage()
         React.DOM.div
           className: 'form-group'
           React.DOM.input

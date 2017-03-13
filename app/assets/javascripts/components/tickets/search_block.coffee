@@ -25,7 +25,7 @@
     option
   render: ->
     React.DOM.form
-      className: 'form-inline'
+      className: 'form-inline pull-left'
       onSubmit: @handleSubmit
       React.DOM.div
         className: 'form-group'
