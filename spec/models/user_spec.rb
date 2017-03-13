@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
   def admin_user
     @admin_user = User.create!({
       email: 'admin@gmail.com',

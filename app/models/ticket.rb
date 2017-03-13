@@ -43,10 +43,11 @@ class Ticket < ApplicationRecord
     end
   end
 
-  ['new', 'inprogress', 'delete', 'close'].each do |state_name|
-    define_method "#{state_name}_state!" do
-      state = State.find_by(name: state_name)
-      self.update_attributes(state_id: state.id)
+  if ActiveRecord::Base.connection.data_source_exists? 'states'
+    State.all.each do |state|
+      define_method "#{state.name}_state!" do
+        self.update_attributes(state_id: state.id)
+      end
     end
   end
 
