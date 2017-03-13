@@ -101,7 +101,10 @@ RSpec.describe Ticket, type: :model do
       @ticket5.close_state!
       @ticket6.close_state!
 
-      expect(Ticket.last_month_closed_tickets).to eq([@ticket3, @ticket4, @ticket5, @ticket6])
+      updated_date = Date.today.prev_month - 1.day
+      @ticket6.update_column(:updated_at, updated_date)
+
+      expect(Ticket.last_month_closed_tickets).to eq([@ticket3, @ticket4, @ticket5])
     end
   end
 end

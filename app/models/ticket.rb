@@ -1,7 +1,6 @@
 require 'prawn'
 require "prawn/table"
 class Ticket < ApplicationRecord
-  extend GeneratePdf
   belongs_to :state
   belongs_to :customer, class_name: Customer
   belongs_to :agent, class_name: Agent
