@@ -43,11 +43,6 @@ class User < ApplicationRecord
     self.send("#{user_type_name}_tabs")
   end
 
-  def admin_state
-    states = {}
-    State.admin_state
-  end
-
   def allowed_ticket_state
     self.send("#{user_type_name}_state")
   end
