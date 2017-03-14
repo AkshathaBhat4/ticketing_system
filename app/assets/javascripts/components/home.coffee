@@ -35,7 +35,7 @@
       else
         ''
       React.DOM.a
-        className: "btn btn-default #{selected}"
+        className: "btn btn-default #{selected} tab"
         key: name
         name: name
         onClick: @tabClicked

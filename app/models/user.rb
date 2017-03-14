@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   after_save :update_user_type
 
-  def as_json
+  def as_json(options={})
     options={
       only: [:id, :email, :name, :user_type_id],
       include: {

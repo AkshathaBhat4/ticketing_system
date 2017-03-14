@@ -27,12 +27,12 @@
     React.DOM.div
       className: 'tickets col-xs-12'
       React.DOM.div
-        className: 'tickets row'
+        className: 'row'
         if (@props.user_type == 'admin' or @props.user_type == 'agent')
           React.createElement DownloadTickets
         React.createElement SearchBlock, all_states: @state.all_states, handleReplaceTicket: @replaceTicket
       React.DOM.div
-        className: 'tickets row'
+        className: 'row'
         React.DOM.br null
         React.DOM.table
           className: 'table table-bordered'

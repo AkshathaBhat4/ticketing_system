@@ -34,12 +34,13 @@
         onSubmit: @handleSubmit
         React.DOM.div
           className: 'form-group'
+          id: 'error_message'
           React.DOM.label null, @errorMessage()
         React.DOM.div
           className: 'form-group'
           React.DOM.input
-            type: 'text'
-            className: 'form-control'
+            type: 'email'
+            className: 'form-control email'
             placeholder: 'Email Id'
             name: 'email'
             value: @state.email
@@ -48,7 +49,7 @@
            className: 'form-group'
            React.DOM.input
              type: 'password'
-             className: 'form-control'
+             className: 'form-control password'
              placeholder: 'Password'
              name: 'password'
              value: @state.password
@@ -58,5 +59,5 @@
             React.DOM.button
               type: 'submit'
               className: 'btn btn-primary'
-              disabled: !@valid()
+              id: 'submit_button'
               'Login'

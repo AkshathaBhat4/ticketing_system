@@ -17,7 +17,6 @@
 //= require react
 //= require react_ujs
 //= require components
-//= require_tree .
 
 $(document).ajaxComplete(function(event, xhr, settings) {
   var csrf_param = xhr.getResponseHeader('X-CSRF-Param');
