@@ -1,6 +1,7 @@
 @Tickets = React.createClass
   getInitialState: ->
     tickets: @props.tickets
+    user_type: @props.user_type
     allowed_states: {}
     all_states: {}
   getDefaultProps: ->
@@ -28,7 +29,7 @@
       className: 'tickets col-xs-12'
       React.DOM.div
         className: 'row'
-        if (@props.user_type == 'admin' or @props.user_type == 'agent')
+        if (@state.user_type == 'admin' or @state.user_type == 'agent')
           React.createElement DownloadTickets
         React.createElement SearchBlock, all_states: @state.all_states, handleReplaceTicket: @replaceTicket
       React.DOM.div

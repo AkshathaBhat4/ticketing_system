@@ -1,13 +1,14 @@
 TestUtils = React.addons.TestUtils
 describe 'Tickets', ->
+  beforeEach ->
+    @props =
+      tickets: [
+        {"id":5,"name":"Test Ticket 2","description":"Test Ticket 2 Description","customer":{"name":"Customer"},"state":{"name":"close"},"agent":{"name":"Customer 5"}}
+      ]
+    @result = TestUtils.renderIntoDocument(React.createElement(Tickets, @props))
   describe 'Admin Login', ->
     beforeEach ->
-      @props =
-        user_type: 'admin'
-        tickets: [
-          {"id":5,"name":"Test Ticket 2","description":"Test Ticket 2 Description","customer":{"name":"Customer"},"state":{"name":"close"},"agent":{"name":"Customer 5"}}
-        ]
-      @result = TestUtils.renderIntoDocument(React.createElement(Tickets, @props))
+      @result.setState(user_type: 'admin')
     it "Display Ticket Page", ->
       expect(TestUtils.findRenderedDOMComponentWithClass(@result, "tickets")).toBeDefined()
     it "List All Tickets Block Displayed", ->
@@ -23,12 +24,7 @@ describe 'Tickets', ->
 
   describe 'Agent Login', ->
     beforeEach ->
-      @props =
-        user_type: 'agent'
-        tickets: [
-          {"id":5,"name":"Test Ticket 2","description":"Test Ticket 2 Description","customer":{"name":"Customer"},"state":{"name":"close"},"agent":{"name":"Customer 5"}}
-        ]
-      @result = TestUtils.renderIntoDocument(React.createElement(Tickets, @props))
+      @result.setState(user_type: 'agent')
     it "Display Ticket Page", ->
       expect(TestUtils.findRenderedDOMComponentWithClass(@result, "tickets")).toBeDefined()
     it "List All Tickets Block Displayed", ->
@@ -44,12 +40,8 @@ describe 'Tickets', ->
 
   describe 'Customer Login', ->
     beforeEach ->
-      @props =
-        user_type: 'customer'
-        tickets: [
-          {"id":5,"name":"Test Ticket 2","description":"Test Ticket 2 Description","customer":{"name":"Customer"},"state":{"name":"close"},"agent":{"name":"Customer 5"}}
-        ]
-      @result = TestUtils.renderIntoDocument(React.createElement(Tickets, @props))
+      @result.setState(user_type: 'customer')
+
     it "Display Ticket Page", ->
       expect(TestUtils.findRenderedDOMComponentWithClass(@result, "tickets")).toBeDefined()
     it "List All Tickets Block Displayed", ->

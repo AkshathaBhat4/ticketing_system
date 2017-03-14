@@ -1,4 +1,6 @@
 @Ticket = React.createClass
+  getInitialState: ->
+    ticket: @props.ticket
   handleChange: (e)->
     e.preventDefault()
     name = e.target.name
