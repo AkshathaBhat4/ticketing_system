@@ -5,51 +5,60 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
-> ruby installed using rvm
-> ruby-2.3.3@crossover
+### Ruby version
+* ruby installed using rvm
+* ruby-2.3.3@crossover
 
-* Ruby version
-> Rails 5.0.2
+### Rails version
+* Rails 5.0.2
 
-* System dependencies
+### System dependencies
 
-* Configuration
-> Require to change confin/database.yml depending on your mysql user name & password
->> bundle install
+#### Configuration
+* Require to change confin/database.yml depending on your mysql user name & password
+> bundle install
 
-* Database creation
-> rake db:create
+#### Database creation
+* rake db:create
 
-* Database initialization
-> rake db:seed
+#### Database initialization
+* rake db:seed
 
-* How to run the test suite
-> For Rspec Test Cases
->> rspec spec  --format documentation
+#### How to run the test suite
+* For Rspec Test Cases
+> rspec spec  --format documentation
 
-> For Jasmine Test Cases
->> rails s
->> in the browser open localhost:3000/specs
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-> For production environments we require following environment variables
->> 1) RAILS_SERVE_STATIC_FILES
-
->> 2) SECRET_KEY_BASE
-
-> Then execute following command to execute all assets file like css, javascripts, images
->> rake assets:precompile RAILS_ENV=production
-
-> To start the server in production environment
->> rails s -e production
-
-* Documentation
-> Navigate inside project folder & Type following command from terminal
->> yard server
+* For Jasmine Test Cases
+> rails s
 >
-> From Browser Navigate to following url to read documentation
->> http://localhost:8808
+> in the browser open localhost:3000/specs
+
+### Deployment instructions
+
+* For production environments we require following environment variables
+> 1) RAILS_SERVE_STATIC_FILES
+>
+> 2) SECRET_KEY_BASE
+
+* Then execute following command to execute all assets file like css, javascripts, images
+> rake assets:precompile RAILS_ENV=production
+
+* To start the server in production environment
+> rails s -e production
+
+### Documentation
+* Navigate inside project folder & Type following command from terminal
+> yard server
+
+* From Browser Navigate to following url to read documentation
+> http://localhost:8808
+
+### Assumptions
+* Default Users(Admin / Agent / Customer) Alredy Created
+* Allowed User States Already Defined as (New / Inprogress / Close / Delete)
+
+### Issues Faced
+* Issues were faced while writing Jasmine & RSpec Test Cases as I am new to it.
+
+### Feedback
+* I enjoyed building this we app and learning new technologies.

@@ -64,69 +64,60 @@
 application up and running.</p>
 
 <p>Things you may want to cover:</p>
+
+<h3 id="label-Ruby+version">Ruby version</h3>
 <ul><li>
-<p>Ruby version</p>
-
-<blockquote>
-<p>ruby installed using rvm ruby-2.3.3@crossover</p>
-</blockquote>
+<p>ruby installed using rvm</p>
 </li><li>
-<p>Ruby version</p>
+<p>ruby-2.3.3@crossover</p>
+</li></ul>
 
-<blockquote>
+<h3 id="label-Rails+version">Rails version</h3>
+<ul><li>
 <p>Rails 5.0.2</p>
-</blockquote>
-</li><li>
-<p>System dependencies</p>
-</li><li>
-<p>Configuration</p>
+</li></ul>
 
-<blockquote>
+<h3 id="label-System+dependencies">System dependencies</h3>
+
+<h4 id="label-Configuration">Configuration</h4>
+<ul><li>
 <p>Require to change confin/database.yml depending on your mysql user name
 &amp; password</p>
 
 <blockquote>
 <p>bundle install</p>
 </blockquote>
-</blockquote>
-</li><li>
-<p>Database creation</p>
+</li></ul>
 
-<blockquote>
+<h4 id="label-Database+creation">Database creation</h4>
+<ul><li>
 <p>rake db:create</p>
-</blockquote>
-</li><li>
-<p>Database initialization</p>
+</li></ul>
 
-<blockquote>
+<h4 id="label-Database+initialization">Database initialization</h4>
+<ul><li>
 <p>rake db:seed</p>
-</blockquote>
-</li><li>
-<p>How to run the test suite</p>
+</li></ul>
 
-<blockquote>
+<h4 id="label-How+to+run+the+test+suite">How to run the test suite</h4>
+<ul><li>
 <p>For Rspec Test Cases</p>
 
 <blockquote>
 <p>rspec spec --format documentation</p>
 </blockquote>
-</blockquote>
-</li></ul>
-
-<blockquote>
+</li><li>
 <p>For Jasmine Test Cases</p>
 
 <blockquote>
-<p>rails s in the browser open localhost:3000/specs</p>
+<p>rails s</p>
+
+<p>in the browser open localhost:3000/specs</p>
 </blockquote>
-</blockquote>
-<ul><li>
-<p>Services (job queues, cache servers, search engines, etc.)</p>
-</li><li>
-<p>Deployment instructions</p>
 </li></ul>
 
-<blockquote>
+<h3 id="label-Deployment+instructions">Deployment instructions</h3>
+<ul><li>
 <p>For production environments we require following environment variables</p>
 
 <blockquote>
@@ -134,41 +125,57 @@ application up and running.</p>
 
 <p>2) SECRET_KEY_BASE</p>
 </blockquote>
-
+</li><li>
 <p>Then execute following command to execute all assets file like css,
 javascripts, images</p>
 
 <blockquote>
 <p>rake assets:precompile RAILS_ENV=production</p>
 </blockquote>
-
+</li><li>
 <p>To start the server in production environment</p>
 
 <blockquote>
 <p>rails s -e production</p>
 </blockquote>
-</blockquote>
-<ul><li>
-<p>Documentation</p>
+</li></ul>
 
-<blockquote>
+<h3 id="label-Documentation">Documentation</h3>
+<ul><li>
 <p>Navigate inside project folder &amp; Type following command from terminal</p>
 
 <blockquote>
 <p>yard server</p>
 </blockquote>
-
+</li><li>
 <p>From Browser Navigate to following url to read documentation</p>
 
 <blockquote>
 <p><a href="http://localhost:8808">localhost:8808</a></p>
 </blockquote>
-</blockquote>
+</li></ul>
+
+<h3 id="label-Assumptions">Assumptions</h3>
+<ul><li>
+<p>Default Users(Admin / Agent / Customer) Alredy Created</p>
+</li><li>
+<p>Allowed User States Already Defined as (New / Inprogress / Close / Delete)</p>
+</li></ul>
+
+<h3 id="label-Issues+Faced">Issues Faced</h3>
+<ul><li>
+<p>Issues were faced while writing Jasmine &amp; RSpec Test Cases as I am new
+to it.</p>
+</li></ul>
+
+<h3 id="label-Feedback">Feedback</h3>
+<ul><li>
+<p>I enjoyed building this we app and learning new technologies.</p>
 </li></ul>
 </div></div>
 
       <div id="footer">
-  Generated on Wed Mar 15 17:38:57 2017 by
+  Generated on Wed Mar 15 18:11:11 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.8 (ruby-2.3.3).
 </div>
