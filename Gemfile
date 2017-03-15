@@ -71,5 +71,5 @@ gem 'prawn-table'
 # Authentication
 gem 'devise'
 
-# Authorizarion
-gem 'cancancan'
+# Documentation
+gem 'yard'

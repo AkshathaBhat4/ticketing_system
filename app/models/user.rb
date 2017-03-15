@@ -1,3 +1,13 @@
+# User Model for Authentication & User Specific settings
+#
+#   belongs_to user_type
+#   has_many customer_tickets
+#   has_many agent_tickets
+# @attr [Integer] id
+# @attr [String] name
+# @attr [String] password
+# @attr [Integer] user_type_id
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -13,6 +23,10 @@ class User < ApplicationRecord
 
   after_save :update_user_type
 
+  # Override as_json response structure with options
+  #
+  # @option options [Hash]
+  # @return [Hash]
   def as_json(options={})
     options={
       only: [:id, :email, :name, :user_type_id],
@@ -23,6 +37,9 @@ class User < ApplicationRecord
     super(options)
   end
 
+  # Update user type to customer if customer user type is blank
+  #
+  # @return [Boolean]
   def  update_user_type
     if user_type.blank?
       customer = UserType.find_by(name: 'customer')
@@ -30,6 +47,9 @@ class User < ApplicationRecord
     end
   end
 
+  # Returns Allowed Admin Tabs
+  #
+  # @return [Hash]
   def admin_tabs
     {
       'users': 'Manage Users',
@@ -38,12 +58,18 @@ class User < ApplicationRecord
     }
   end
 
+  # Returns Allowed Agent Tabs
+  #
+  # @return [Hash]
   def agent_tabs
     {
       'tickets': 'Manage Tickets'
     }
   end
 
+  # Returns Allowed Customer Tabs
+  #
+  # @return [Hash]
   def customer_tabs
     {
       'tickets': 'Manage Tickets',
@@ -51,10 +77,16 @@ class User < ApplicationRecord
     }
   end
 
+  # Returns User Specific Tabs
+  #
+  # @return [Hash]
   def user_tabs
     self.send("#{user_type_name}_tabs")
   end
 
+  # Returns User Specific Ticket States
+  #
+  # @return [Hash]
   def allowed_ticket_state
     self.send("#{user_type_name}_state")
   end

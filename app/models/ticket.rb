@@ -1,5 +1,17 @@
 require 'prawn'
 require "prawn/table"
+# Ticket Model to access all the tickets
+#
+#   belongs_to state
+#   belongs_to customer
+#   belongs_to agent
+# @attr [Integer] id
+# @attr [String] name
+# @attr [String] description
+# @attr [Integer] state_id
+# @attr [Integer] customer_id
+# @attr [Integer] agent_id
+
 class Ticket < ApplicationRecord
   belongs_to :state
   belongs_to :customer, class_name: Customer
@@ -15,6 +27,9 @@ class Ticket < ApplicationRecord
 
   after_create :new_state!
 
+  # Override as_json response structure with options
+  #
+  # @return [Hash]
   def as_json
     options={
       only: [:id, :name, :description],
@@ -27,6 +42,9 @@ class Ticket < ApplicationRecord
     super(options)
   end
 
+  # Creates Monthly Report PDF File
+  #
+  # @param file_name [String]
   def self.generate_monthly_report(file_name)
     tickets = Ticket.last_month_closed_tickets
     Prawn::Document.generate(file_name, margin: 20, top_margin: 170, page_size: 'A4', page_layout: :portrait) do

@@ -1,4 +1,12 @@
+# Consists of Tickets Specific Actions
+#
 class TicketsController < ApplicationController
+  # Filter Tickets Depending on the parameters passed
+  # @api private
+  # = Valid Params
+  #   param id [Integer]
+  #   param state [String]
+  # @return [Json]
   def show
     if params[:id].present?
       ticket = Ticket.find_by(id: params[:id])
@@ -14,6 +22,12 @@ class TicketsController < ApplicationController
     end
   end
 
+  # Change The Ticket State
+  # @api private
+  # = Valid Params
+  #   param id [Integer]
+  #   param state [String]
+  # @return [Json]
   def change_state
     ticket = Ticket.find_by(id: params[:id])
     name = params[:state]
@@ -27,6 +41,12 @@ class TicketsController < ApplicationController
     end
   end
 
+  # Create New Ticket
+  # @api private
+  # = Valid Params
+  #   param ticket[name] [String]
+  #   param ticket[description] [String]
+  # @return [Json]
   def create
     @ticket = current_user.customer_tickets.new(ticket_params)
 
@@ -37,6 +57,9 @@ class TicketsController < ApplicationController
     end
   end
 
+  # Download Last Month Closed Tickets
+  # @api private
+  # @return [Pdf]
   def generate_report
     file_name = "tmp/ticket_report_#{Date.today.strftime("%d_%m_%Y")}.pdf"
     Ticket.generate_monthly_report(file_name)
@@ -45,6 +68,7 @@ class TicketsController < ApplicationController
 
   private
 
+    # Allow Valid Ticket Params for Create
     def ticket_params
       params.require(:ticket).permit(:name, :description)
     end
