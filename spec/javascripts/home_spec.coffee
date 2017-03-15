@@ -35,12 +35,13 @@ describe 'Home', ->
       beforeEach ->
         @result.setState(user_type: 'admin')
       it "Display Admin Tabs", ->
-        @result.setState(user_tabs: {"users":"Manage Users","tickets":"Manage Tickets"})
+        @result.setState(user_tabs: {"users":"Manage Users","tickets":"Manage Tickets", 'new_ticket': 'Raise Ticket'})
         tabs = TestUtils.scryRenderedDOMComponentsWithClass(@result, 'tab')
         expect(tabs).toBeDefined()
-        expect(tabs.length).toEqual(2)
+        expect(tabs.length).toEqual(3)
         expect(tabs[0].textContent).toEqual("Manage Users")
         expect(tabs[1].textContent).toEqual("Manage Tickets")
+        expect(tabs[2].textContent).toEqual("Raise Ticket")
       it "Display Manage Users Page", ->
         @result.setState(selected_tab: "users")
         expect(TestUtils.scryRenderedComponentsWithType(@result, Users)).toBeDefined()

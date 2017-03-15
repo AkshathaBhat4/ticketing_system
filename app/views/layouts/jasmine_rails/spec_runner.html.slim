@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    meta content="text/html;charset=UTF-8" http-equiv="Content-Type" /
+    title Jasmine Specs
+    = csrf_meta_tags
+    = stylesheet_link_tag *jasmine_css_files
+    = javascript_include_tag *jasmine_js_files
+    css:
+      a:link {
+        pointer-events: none;
+      }
+  body
+    #jasmine_content
+    = yield

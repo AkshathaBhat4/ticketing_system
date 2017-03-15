@@ -33,7 +33,8 @@ class User < ApplicationRecord
   def admin_tabs
     {
       'users': 'Manage Users',
-      'tickets': 'Manage Tickets'
+      'tickets': 'Manage Tickets',
+      'new_ticket': 'Raise Ticket'
     }
   end
 

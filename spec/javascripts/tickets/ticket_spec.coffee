@@ -4,6 +4,7 @@ describe 'Ticket', ->
     @props =
       ticket: {"id":5,"name":"Test Ticket 2","description":"Test Ticket 2 Description","customer":{"name":"Customer"},"state":{"name":"close"},"agent":{"name":"Customer 5"}}
       allowed_states: {"inprogress":"Inprogress","close":"Close","delete":"Delete"}
+      key: 5
     @result = TestUtils.renderIntoDocument(React.createElement(Ticket, @props))
 
   it "Validate Ticket Action Buttons", ->
