@@ -110,7 +110,8 @@ RSpec.describe User, type: :model do
     it "admin user tab", admin_user: true do
       user_tabs = {
         'users': 'Manage Users',
-        'tickets': 'Manage Tickets'
+        'tickets': 'Manage Tickets',
+        'new_ticket': 'Raise Ticket'
       }
       expect(@admin_user.user_tabs).to eq(user_tabs)
       expect(@admin_user.user_tabs).to eq(@admin_user.admin_tabs)

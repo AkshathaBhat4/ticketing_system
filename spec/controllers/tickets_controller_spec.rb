@@ -114,8 +114,8 @@ RSpec.describe TicketsController, type: :controller do
         }
       }
     end
-    it "returns http success" do
-      sign_in @admin_user
+    it "returns http success", customer_user: true do
+      sign_in @customer_user
       post :create, params: valid_user_params
       expect(response).to have_http_status(:success)
     end

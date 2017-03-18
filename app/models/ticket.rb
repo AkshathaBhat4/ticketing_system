@@ -13,9 +13,9 @@ require "prawn/table"
 # @attr [Integer] agent_id
 
 class Ticket < ApplicationRecord
-  belongs_to :state
+  belongs_to :state, optional: true
   belongs_to :customer, class_name: Customer
-  belongs_to :agent, class_name: Agent
+  belongs_to :agent, class_name: Agent, optional: true
 
   scope :customer_tickets, ->  (customer_id){where(customer_id: customer_id)}
   scope :state_tickets, ->  (state_name){includes(:state).where(states: {name: state_name})}
