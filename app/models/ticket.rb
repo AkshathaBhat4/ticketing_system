@@ -52,7 +52,7 @@ class Ticket < ApplicationRecord
       move_down 10
       font 'Times-Roman'
       text "The Chairman,"
-      data = [["Name", "Description", "Customer Name", "Agernt Name"]]
+      data = [["Name", "Description", "Customer Name", "Agent Name"]]
       tickets.each do |ticket|
         data << [ticket.name, ticket.description, ticket.customer_name, ticket.agent_name]
       end

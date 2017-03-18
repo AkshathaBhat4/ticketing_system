@@ -99,4 +99,4 @@ describe 'Home', ->
       expect(TestUtils.scryRenderedDOMComponentsWithClass(@result, 'tabs')).toBeDefined()
       expect(TestUtils.scryRenderedDOMComponentsWithClass(@result, 'tabs')).not.toEqual([ ])
   it "Display Home Screen", ->
-    expect(ReactDOM.findDOMNode(@result).textContent).toContain('Welcome to Ticketing System')
+    expect(ReactDOM.findDOMNode(@result).textContent).toContain('Welcome to Customer Support Tracking System')

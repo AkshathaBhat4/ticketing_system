@@ -1,7 +1,7 @@
 # Consists of Users Specific Actions
 #
 class UsersController < ApplicationController
-  before_action :validate_admin_user, except: [:all_states]
+  before_action :validate_admin_user, except: [:all_states, :get_user_tabs, :allowed_states]
 
   # Get All Non Admin Users
   # @api private

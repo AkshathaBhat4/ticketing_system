@@ -57,7 +57,7 @@
       React.DOM.div
         className: 'panel-heading text-center'
         React.DOM.h2 null,
-          'Welcome to Ticketing System'
+          'Welcome to Customer Support Tracking System'
           if @state.user_signed_in
             React.createElement SignOutPage, handleUserSignOut: @handleSignOut
       React.DOM.div
